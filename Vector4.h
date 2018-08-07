@@ -16,8 +16,9 @@ public:
 	void setW(double x) { this->w = w; }
 
 	double magnitude();
-	static double dot(Vector4 &v1, Vector4 &v2);
-	static Vector4 scale(Vector4 &v1, Vector4 &v2);
+	static double dot(const Vector4 &v1, const Vector4 &v2);
+	static Vector4 scale(const Vector4 &v1, const Vector4 &v2);
+	static Vector4 lerp(const Vector4 &v1, const Vector4 &v2, const double t);
 
 	const Vector4 &operator=(const Vector4 &vector);
 	bool operator==(const Vector4 &vector) const;
@@ -27,8 +28,8 @@ public:
 };
 
 ostream &operator<<(ostream &out, const Vector4 &vector);
-Vector4 operator+(Vector4 &v1, Vector4 &v2);
-Vector4 operator-(Vector4 &v1, Vector4 &v2);
-Vector4 operator*(Vector4 &v1, double d);
-Vector4 operator*(double d, Vector4 &v1);
-Vector4 operator/(Vector4 &v1, double d);
+Vector4 operator+(const Vector4 &v1, const Vector4 &v2);
+Vector4 operator-(const Vector4 &v1, const Vector4 &v2);
+Vector4 operator*(const Vector4 &v1, const double d);
+Vector4 operator*(const double d, const Vector4 &v1);
+Vector4 operator/(const Vector4 &v1, const double d);

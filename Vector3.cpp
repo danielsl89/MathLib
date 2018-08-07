@@ -1,5 +1,4 @@
 #include "Vector3.h"
-#include <exception>
 
 Vector3::Vector3() :x(0), y(0), z(0)
 {
@@ -29,12 +28,12 @@ double Vector3::magnitude()
 	return sqrt(x*x + y*y + z *z);
 }
 
-double Vector3::dot(Vector3 & v1, Vector3 & v2)
+double Vector3::dot(const Vector3 & v1, const Vector3 & v2)
 {
 	return v1.getX() * v2.getX() + v1.getY() * v2.getY() + v1.getZ() * v2.getZ();
 }
 
-Vector3 Vector3::cross(Vector3 & v1, Vector3 & v2)
+Vector3 Vector3::cross(const Vector3 & v1, const Vector3 & v2)
 {
 	double i = v1.getY() * v2.getZ() - v1.getZ() * v2.getY();
 	double j = -v1.getX() * v2.getZ() + v1.getZ() * v2.getX();
@@ -42,9 +41,14 @@ Vector3 Vector3::cross(Vector3 & v1, Vector3 & v2)
 	return Vector3(i, j, k);
 }
 
-Vector3 Vector3::scale(Vector3 & v1, Vector3 & v2)
+Vector3 Vector3::scale(const Vector3 & v1, const Vector3 & v2)
 {
 	return Vector3(v1.getX() * v2.getX(), v1.getY() * v2.getY(), v2.getZ() * v2.getZ());
+}
+
+Vector3 Vector3::lerp(const Vector3 & v1, const Vector3 & v2, const double t)
+{
+	return t * v1 + (1.0 - t) * v2;
 }
 
 const Vector3 &Vector3::operator=(const Vector3 &vector)
@@ -91,27 +95,27 @@ ostream &operator<<(ostream &out, const Vector3 &vector)
 	return out;
 }
 
-Vector3 operator+(Vector3 &v1, Vector3 &v2)
+Vector3 operator+(const Vector3 &v1, const Vector3 &v2)
 {
 	return Vector3(v1.getX() + v2.getX(), v1.getY() + v2.getY(), v1.getZ() + v2.getZ());
 }
 
-Vector3 operator-(Vector3 &v1, Vector3 &v2)
+Vector3 operator-(const Vector3 &v1, const Vector3 &v2)
 {
 	return Vector3(v1.getX() - v2.getX(), v1.getY() - v2.getY(), v1.getZ() - v2.getZ());
 }
 
-Vector3 operator*(Vector3 & v1, double d)
+Vector3 operator*(const Vector3 & v1, const double d)
 {
 	return Vector3(v1.getX() * d, v1.getY() * d, v1.getZ() * d);
 }
 
-Vector3 operator*(double d, Vector3 & v1)
+Vector3 operator*(const double d, const Vector3 & v1)
 {
 	return v1 * d;
 }
 
-Vector3 operator/(Vector3 & v1, double d)
+Vector3 operator/(const Vector3 & v1, const double d)
 {
 	return v1 * (1/d);
 }

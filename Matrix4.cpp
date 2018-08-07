@@ -73,7 +73,7 @@ ostream &operator<<(ostream &out, const Matrix4 &m)
 	return out;
 }
 
-Matrix4 operator+(Matrix4 &m1, Matrix4 &m2)
+Matrix4 operator+(const Matrix4 &m1, const Matrix4 &m2)
 {
 	const unsigned int matrixSize = m1.getMatrix().size();
 	array<Vector4, Vector4::SIZE> matrix;
@@ -84,7 +84,7 @@ Matrix4 operator+(Matrix4 &m1, Matrix4 &m2)
 	return Matrix4(matrix);
 }
 
-Matrix4 operator-(Matrix4 &m1, Matrix4 &m2)
+Matrix4 operator-(const Matrix4 &m1, const Matrix4 &m2)
 {
 	const unsigned int matrixSize = m1.getMatrix().size();
 	array<Vector4, Vector4::SIZE> matrix;
@@ -95,7 +95,7 @@ Matrix4 operator-(Matrix4 &m1, Matrix4 &m2)
 	return Matrix4(matrix);
 }
 
-Matrix4 operator*(Matrix4 & m1, double d)
+Matrix4 operator*(const Matrix4 & m1, const double d)
 {
 	const unsigned int matrixSize = m1.getMatrix().size();
 	array<Vector4, Vector4::SIZE> matrix;
@@ -106,12 +106,12 @@ Matrix4 operator*(Matrix4 & m1, double d)
 	return Matrix4(matrix);
 }
 
-Matrix4 operator*(double d, Matrix4 & m1)
+Matrix4 operator*(const double d, const Matrix4 & m1)
 {
 	return m1 * d;
 }
 
-Matrix4 operator/(Matrix4 & m1, double d)
+Matrix4 operator/(const Matrix4 & m1, const double d)
 {
 	return m1 * ( 1 / d);
 }

@@ -24,11 +24,11 @@ public:
 };
 
 ostream &operator<<(ostream &out, const Matrix3 &m);
-Matrix3 operator+(Matrix3 &m1, Matrix3 &m2);
-Matrix3 operator-(Matrix3 &m1, Matrix3 &m2);
-Matrix3 operator*(Matrix3 &m1, double d);
-Matrix3 operator*(double d, Matrix3 &m1);
-Matrix3 operator/(Matrix3 &m1, double d);
+Matrix3 operator+(const Matrix3 &m1, const Matrix3 &m2);
+Matrix3 operator-(const Matrix3 &m1, const Matrix3 &m2);
+Matrix3 operator*(const Matrix3 &m1, const double d);
+Matrix3 operator*(double d, const Matrix3 &m1);
+Matrix3 operator/(const Matrix3 &m1, const double d);
 Vector3 operator*(Matrix3 &m1, Vector3 &v1);
 Vector3 operator*(Vector3 &v1, Matrix3 &m1);
 Matrix3 operator*(Matrix3 &m1, Matrix3 &m2);

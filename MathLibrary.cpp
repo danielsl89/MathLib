@@ -34,6 +34,8 @@ void vector3Examples()
 	cout << "Scale vector3_1 by vector3_2: " << result << endl;
 
 	cout << "Magnitude vector3_1: " << vector3_1.magnitude() << endl;
+
+	cout << "Linear interpolation (t=0.25) between vector3_1 and vector3_2: " << Vector3::lerp(vector3_1, vector3_2, 0.25) << endl;
 }
 
 void vector4Examples()
@@ -59,6 +61,8 @@ void vector4Examples()
 	cout << "Scale vector4_1 by vector4_2: " << result << endl;
 
 	cout << "Magnitude vector4_1: " << vector4_1.magnitude() << endl;
+
+	cout << "Linear interpolation (t=0.5) between vector4_1 and vector4_2: " << Vector3::lerp(vector4_1, vector4_2, 0.5) << endl;
 }
 
 void matrix3Examples()
@@ -157,6 +161,12 @@ void quaternionExamples()
 	cout << "Result of quaternion1 + quaternion2: " << quaternion1 + quaternion2 << endl;
 	cout << "Result of quaternion1 - quaternion2: " << quaternion1 - quaternion2 << endl;
 	cout << "Result of quaternion1 * quaternion2: " << quaternion1 * quaternion2 << endl;
+
+	Vector3 vector3_1(0, 3, 2);
+	cout << "vector3_1: " << vector3_1 << endl;
+	Quaternion quaternion3 = Quaternion::getQuaternionByAngleAndVector(90, Vector3(1, 0, 0));
+	cout << "quaternion3: " << quaternion3 << endl;
+	cout << "Result of rotation: " << vector3_1 * quaternion3 << endl;
 }
 
 int main() {

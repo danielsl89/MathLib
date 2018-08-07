@@ -71,7 +71,7 @@ ostream &operator<<(ostream &out, const Matrix3 &m)
 	return out;
 }
 
-Matrix3 operator+(Matrix3 &m1, Matrix3 &m2)
+Matrix3 operator+(const Matrix3 &m1, const Matrix3 &m2)
 {
 	const unsigned int matrixSize = m1.getMatrix().size();
 	array<Vector3, Vector3::SIZE> matrix;
@@ -82,7 +82,7 @@ Matrix3 operator+(Matrix3 &m1, Matrix3 &m2)
 	return Matrix3(matrix);
 }
 
-Matrix3 operator-(Matrix3 &m1, Matrix3 &m2)
+Matrix3 operator-(const Matrix3 &m1, const Matrix3 &m2)
 {
 	const unsigned int matrixSize = m1.getMatrix().size();
 	array<Vector3, Vector3::SIZE> matrix;
@@ -93,7 +93,7 @@ Matrix3 operator-(Matrix3 &m1, Matrix3 &m2)
 	return Matrix3(matrix);
 }
 
-Matrix3 operator*(Matrix3 & m1, double d)
+Matrix3 operator*(const Matrix3 & m1, const double d)
 {
 	const unsigned int matrixSize = m1.getMatrix().size();
 	array<Vector3, Vector3::SIZE> matrix;
@@ -104,12 +104,12 @@ Matrix3 operator*(Matrix3 & m1, double d)
 	return Matrix3(matrix);
 }
 
-Matrix3 operator*(double d, Matrix3 & m1)
+Matrix3 operator*(const double d, const Matrix3 & m1)
 {
 	return m1 * d;
 }
 
-Matrix3 operator/(Matrix3 & m1, double d)
+Matrix3 operator/(const Matrix3 & m1, const double d)
 {
 	return m1 * ( 1 / d);
 }

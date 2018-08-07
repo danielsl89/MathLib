@@ -1,6 +1,9 @@
 #pragma once
 #include <iostream>
+#include "Vector3.h"
 using namespace std;
+
+#define PI 3.14159265
 
 class Quaternion {
 private:
@@ -25,10 +28,15 @@ public:
 	double getZ() const { return z; }
 	void setZ(double z) { this->z = z; }
 
-	Quaternion operator+(Quaternion &q);
-	Quaternion operator-(Quaternion &q);
-	Quaternion operator*(Quaternion &q);
+	static Quaternion getQuaternionByAngleAndVector(double angle, Vector3 vector);
+	static Quaternion slerp(const Quaternion &q1, const Quaternion &q2, double t);
+
+	Quaternion operator+(const Quaternion &q);
+	Quaternion operator-(const Quaternion &q);
+	Quaternion operator*(const Quaternion &q) const;
 	~Quaternion();
 };
 
 ostream &operator<<(ostream &out, const Quaternion &quaternion);
+Vector3 operator*(const Vector3 &v1, const Quaternion &q);
+Vector3 operator*(Quaternion &q, Vector3 &v1);

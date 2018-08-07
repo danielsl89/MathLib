@@ -28,9 +28,10 @@ public:
 	void setZ(double z) { this->z = z; }
 
 	double magnitude();
-	static double dot(Vector3 &v1, Vector3 &v2);
-	static Vector3 cross(Vector3 &v1, Vector3 &v2);
-	static Vector3 scale(Vector3 &v1, Vector3 &v2);
+	static double dot(const Vector3 &v1, const Vector3 &v2);
+	static Vector3 cross(const Vector3 &v1, const Vector3 &v2);
+	static Vector3 scale(const Vector3 &v1, const Vector3 &v2);
+	static Vector3 lerp(const Vector3 &v1, const Vector3 &v2, const double t);
 
 	const Vector3 &operator=(const Vector3 &vector);
 	bool operator==(const Vector3 &vector) const;
@@ -40,8 +41,8 @@ public:
 };
 
 ostream &operator<<(ostream &out, const Vector3 &vector);
-Vector3 operator+(Vector3 &v1, Vector3 &v2);
-Vector3 operator-(Vector3 &v1, Vector3 &v2);
-Vector3 operator*(Vector3 &v1, double d);
-Vector3 operator*(double d, Vector3 &v1);
-Vector3 operator/(Vector3 &v1, double d);
+Vector3 operator+(const Vector3 &v1, const Vector3 &v2);
+Vector3 operator-(const Vector3 &v1, const Vector3 &v2);
+Vector3 operator*(const Vector3 &v1, const double d);
+Vector3 operator*(const double d, const Vector3 &v1);
+Vector3 operator/(const Vector3 &v1, const double d);

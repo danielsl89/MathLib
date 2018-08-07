@@ -25,14 +25,19 @@ double Vector4::magnitude()
 	return sqrt(x*x + y*y + z*z + w*w);
 }
 
-double Vector4::dot(Vector4 & v1, Vector4 & v2)
+double Vector4::dot(const Vector4 & v1, const Vector4 & v2)
 {
 	return Vector3::dot(v1, v2) + v1.getW() * v2.getW();
 }
 
-Vector4 Vector4::scale(Vector4 & v1, Vector4 & v2)
+Vector4 Vector4::scale(const Vector4 & v1, const Vector4 & v2)
 {
 	return Vector4(v1.getX() * v2.getX(), v1.getY() * v2.getY(), v2.getZ() * v2.getZ(), v1.getW() * v2.getW());
+}
+
+Vector4 Vector4::lerp(const Vector4 & v1, const Vector4 & v2, const double t)
+{
+	return t * v1 + (1.0 - t) * v2;
 }
 
 const Vector4 &Vector4::operator=(const Vector4 &vector)
@@ -72,27 +77,27 @@ ostream &operator<<(ostream &out, const Vector4 &vector)
 	return out;
 }
 
-Vector4 operator+(Vector4 &v1, Vector4 &v2)
+Vector4 operator+(const Vector4 &v1, const Vector4 &v2)
 {
 	return Vector4(v1.getX() + v2.getX(), v1.getY() + v2.getY(), v1.getZ() + v2.getZ(), v1.getW() + v2.getW());
 }
 
-Vector4 operator-(Vector4 &v1, Vector4 &v2)
+Vector4 operator-(const Vector4 &v1, const Vector4 &v2)
 {
 	return Vector4(v1.getX() - v2.getX(), v1.getY() - v2.getY(), v1.getZ() - v2.getZ(), v1.getW() - v2.getW());
 }
 
-Vector4 operator*(Vector4 & v1, double d)
+Vector4 operator*(const Vector4 & v1, const double d)
 {
 	return Vector4(v1.getX() * d, v1.getY() * d, v1.getZ() * d, v1.getW() * d);
 }
 
-Vector4 operator*(double d, Vector4 & v1)
+Vector4 operator*(const double d, const Vector4 & v1)
 {
 	return v1 * d;
 }
 
-Vector4 operator/(Vector4 & v1, double d)
+Vector4 operator/(const Vector4 & v1, const double d)
 {
 	return v1 * (1 / d);
 }

@@ -24,11 +24,11 @@ public:
 };
 
 ostream &operator<<(ostream &out, const Matrix4 &m);
-Matrix4 operator+(Matrix4 &m1, Matrix4 &m2);
-Matrix4 operator-(Matrix4 &m1, Matrix4 &m2);
-Matrix4 operator*(Matrix4 &m1, double d);
-Matrix4 operator*(double d, Matrix4 &m1);
-Matrix4 operator/(Matrix4 &m1, double d);
+Matrix4 operator+(const Matrix4 &m1, const Matrix4 &m2);
+Matrix4 operator-(const Matrix4 &m1, const Matrix4 &m2);
+Matrix4 operator*(const Matrix4 &m1, const double d);
+Matrix4 operator*(const double d, const  Matrix4 &m1);
+Matrix4 operator/(const Matrix4 &m1, const double d);
 Vector4 operator*(Matrix4 &m1, Vector4 &v1);
 Vector4 operator*(Vector4 &v1, Matrix4 &m1);
 Matrix4 operator*(Matrix4 &m1, Matrix4 &m2);
