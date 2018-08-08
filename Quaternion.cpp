@@ -12,6 +12,11 @@ Quaternion::Quaternion(const Quaternion &q) : w(q.w), x(q.x), y(q.y), z(q.z)
 {
 }
 
+double Quaternion::dot(const Quaternion & q1, const Quaternion & q2)
+{
+	return q1.x * q2.x + q1.y * q2.y + q1.z * q2.z + q1.w * q2.w;
+}
+
 Quaternion Quaternion::getQuaternionByAngleAndVector(double angle, Vector3 vector)
 {
 	double rad = angle * PI / 180;
@@ -19,36 +24,65 @@ Quaternion Quaternion::getQuaternionByAngleAndVector(double angle, Vector3 vecto
 	return Quaternion(cos(rad / 2), vector.getX() * a, vector.getY() * a, vector.getZ() * a );
 }
 
-Quaternion Quaternion::slerp(const Quaternion & q1, const Quaternion & q2, double t)
+Quaternion Quaternion::getNormalizedQuaternion(const Quaternion & q1)
 {
-	double dotproduct = q1.x * q2.x + q1.y * q2.y + q1.z * q2.z + q1.w * q2.w;
-
-	t = t / 2.0;
-
-	double theta = acos(dotproduct);
-	if (theta<0.0) theta = -theta;
-
-	double s1 = sin(theta);
-	double s2 = sin(t*theta);
-	double s3 = sin((1 - t)*theta);
-	double coeff1 = s3 / s1;
-	double coeff2 = s2 / s1;
-
-	Quaternion q3(coeff1 * q1.w + coeff2 * q2.w,
-		coeff1 * q1.x + coeff2 * q2.x,
-		coeff1 * q1.y + coeff2 * q2.y,
-		coeff1 * q1.z + coeff2 * q2.z);
-
-	//We should normalize before returning
-	return q3;
+	double norm = sqrt(q1.w * q1.w + q1.x * q1.x + q1.y * q1.y + q1.z * q1.z);
+	return Quaternion(q1.w / norm, q1.x / norm, q1.y / norm, q1.z / norm);
 }
 
-Quaternion Quaternion::operator+(const Quaternion &q)
+Quaternion Quaternion::lerp(const Quaternion & q1, const Quaternion & q2, double t)
+{
+	return q1 + t * (q2 - q1);
+}
+
+Quaternion Quaternion::slerp(const Quaternion & q1, const Quaternion & q2, double t)
+{
+	Quaternion qn1 = Quaternion::getNormalizedQuaternion(q1);
+	Quaternion qn2 = Quaternion::getNormalizedQuaternion(q2);
+
+	double dot = Quaternion::dot(qn1, qn2);
+
+	//Reversing q2, so slerp takes the shortest path
+	if (dot < 0) {
+		qn2 = -1 * qn2;
+		dot = -dot;
+	}
+
+	const double DOT_THRESHOLD = 0.9995;
+	//If the results are too close, linearly interpolate
+	if (dot > DOT_THRESHOLD) {
+		Quaternion result = Quaternion::lerp(q1, q2, t);
+		result.normalize();
+		return result;
+	}
+
+	// Since dot is in range [0, DOT_THRESHOLD], acos is safe
+	double theta_0 = acos(dot);
+	double theta = theta_0 * t;
+	double sin_theta = sin(theta);
+	double sin_theta_0 = sin(theta_0);
+
+	double s0 = cos(theta) - dot * sin_theta / sin_theta_0;
+	double s1 = sin_theta / sin_theta_0;
+
+	return (s0 * qn1) + (s1 * qn2);
+}
+
+void Quaternion::normalize()
+{
+	double norm = sqrt(w * w + x * x + y * y + z * z);
+	w = w / norm;
+	x = x / norm;
+	y = y / norm;
+	z = z / norm;
+}
+
+Quaternion Quaternion::operator+(const Quaternion &q) const
 {
 	return Quaternion(w + q.w, x + q.x, y + q.y, z + q.z);
 }
 
-Quaternion Quaternion::operator-(const Quaternion &q)
+Quaternion Quaternion::operator-(const Quaternion &q) const
 {
 	return Quaternion(w - q.w, x - q.x, y - q.y, z - q.z);
 }
@@ -82,4 +116,19 @@ Vector3 operator*(const Vector3 & v1, const Quaternion & q)
 Vector3 operator*(Quaternion & q, Vector3 & v1)
 {
 	return v1 * q;
+}
+
+Quaternion operator*(const Quaternion & q1, const double d)
+{
+	return Quaternion(q1.getW() * d, q1.getX() * d, q1.getY() * d, q1.getZ() * d);
+}
+
+Quaternion operator*(const double d, const Quaternion & q1)
+{
+	return q1 * d;
+}
+
+Quaternion operator/(const Quaternion & q1, const double d)
+{
+	return q1 * ( 1 / d );
 }

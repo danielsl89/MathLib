@@ -165,8 +165,15 @@ void quaternionExamples()
 	Vector3 vector3_1(0, 3, 2);
 	cout << "vector3_1: " << vector3_1 << endl;
 	Quaternion quaternion3 = Quaternion::getQuaternionByAngleAndVector(90, Vector3(1, 0, 0));
-	cout << "quaternion3: " << quaternion3 << endl;
+	cout << "quaternion3 (angle: 90, vector3(1, 0, 0): " << quaternion3 << endl;
 	cout << "Result of rotation: " << vector3_1 * quaternion3 << endl;
+
+	Quaternion qn1 = Quaternion::getNormalizedQuaternion(quaternion1);
+	Quaternion qn2 = Quaternion::getNormalizedQuaternion(Quaternion(-1, 0, 1, 0));
+
+	cout << "Normalized quaternion1: " << qn1 << endl;
+	cout << "Normalized quaternion(-1, 0, 1, 0): " << qn2 << endl;
+	cout << "Slerp: " << Quaternion::slerp(qn1, qn2, 0.5);
 }
 
 int main() {

@@ -28,11 +28,15 @@ public:
 	double getZ() const { return z; }
 	void setZ(double z) { this->z = z; }
 
+	static double dot(const Quaternion &q1, const Quaternion &q2);
 	static Quaternion getQuaternionByAngleAndVector(double angle, Vector3 vector);
+	static Quaternion getNormalizedQuaternion(const Quaternion &q1);
+	static Quaternion lerp(const Quaternion &q1, const Quaternion &q2, double t);
 	static Quaternion slerp(const Quaternion &q1, const Quaternion &q2, double t);
 
-	Quaternion operator+(const Quaternion &q);
-	Quaternion operator-(const Quaternion &q);
+	void normalize();
+	Quaternion operator+(const Quaternion &q) const;
+	Quaternion operator-(const Quaternion &q) const;
 	Quaternion operator*(const Quaternion &q) const;
 	~Quaternion();
 };
@@ -40,3 +44,6 @@ public:
 ostream &operator<<(ostream &out, const Quaternion &quaternion);
 Vector3 operator*(const Vector3 &v1, const Quaternion &q);
 Vector3 operator*(Quaternion &q, Vector3 &v1);
+Quaternion operator*(const Quaternion &q1, const double d);
+Quaternion operator*(const double d, const Quaternion &q1);
+Quaternion operator/(const Quaternion &q1, const double d);
