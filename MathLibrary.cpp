@@ -2,7 +2,8 @@
 #include "vector4.h"
 #include "Matrix3.h"
 #include "Matrix4.h"
-#include "quaternion.h"
+#include "Quaternion.h"
+#include "AABB.h"
 #include <iostream>
 #include <array>
 #include <vector>
@@ -173,7 +174,25 @@ void quaternionExamples()
 
 	cout << "Normalized quaternion1: " << qn1 << endl;
 	cout << "Normalized quaternion(-1, 0, 1, 0): " << qn2 << endl;
-	cout << "Slerp: " << Quaternion::slerp(qn1, qn2, 0.5);
+	cout << "Slerp: " << Quaternion::slerp(qn1, qn2, 0.5) << endl;
+}
+
+void aabbExamples()
+{
+	cout << "----------- AABB -----------" << endl;
+	AABB aabb1(Vector3(2, 2, 1), Vector3(4, 4, 1));
+	cout << "aabb1: " << aabb1 << endl;
+	AABB aabb2(Vector3(3, 4, 1), Vector3(5, 5, 2));
+	cout << "aabb2: " << aabb2 << endl;
+
+	if (aabb1.collide(aabb2))
+	{
+		cout << "aabb1 collides aabb2" << endl;
+	}
+	else
+	{
+		cout << "aabb1 does not collide aabb2" << endl;
+	}
 }
 
 int main() {
@@ -183,6 +202,7 @@ int main() {
 	matrix3Examples();
 	matrix4Examples();
 	quaternionExamples();
+	aabbExamples();
 
 	int wait;
 	cin >> wait;
