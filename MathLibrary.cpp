@@ -7,7 +7,15 @@
 #include <iostream>
 #include <array>
 #include <vector>
+#include "OpenGLUtil.h"
 using namespace std;
+
+const char* WINDOW_NAME = "Math Library";
+vector<Vector3> bezierAnchors;
+vector<Vector3> casteljauPoints;
+void runMainLoop(int val);
+void update();
+void render();
 
 void vector3Examples()
 {
@@ -195,7 +203,25 @@ void aabbExamples()
 	}
 }
 
-int main() {
+Vector3 getCasteljauPoint(vector<Vector3> &points, int r, int i, double t) {
+	if (r == 0) return points[i];
+
+	Vector3 v1 = getCasteljauPoint(points, r - 1, i, t);
+	Vector3 v2 = getCasteljauPoint(points, r - 1, i + 1, t);
+
+	return Vector3(((1 - t) * v1.getX() + t * v2.getX()), ((1 - t) * v1.getY() + t * v2.getY()), ((1 - t) * v1.getZ() + t * v2.getZ()));
+}
+
+void getCasteljauPoints(vector<Vector3> &points) {
+	Vector3 cp;
+
+	for (double t = 0; t <= 1; t += 0.001) {
+		cp = getCasteljauPoint(points, points.size() - 1, 0, t);
+		casteljauPoints.push_back(cp);
+	}
+}
+
+int main(int argc, char* args[]) {
 
 	vector3Examples();
 	vector4Examples();
@@ -203,9 +229,78 @@ int main() {
 	matrix4Examples();
 	quaternionExamples();
 	aabbExamples();
+	cout << "---------------------------" << endl;
+	//Bezier curve generation and drawing
+	bezierAnchors.push_back(Vector3(20, 20, 1));
+	bezierAnchors.push_back(Vector3(400, 80, 1));
+	bezierAnchors.push_back(Vector3(420, 380, 1));
+	bezierAnchors.push_back(Vector3(620, 400, 1));
+	getCasteljauPoints(bezierAnchors);
 
-	int wait;
-	cin >> wait;
+	//Initialize FreeGLUT
+	glutInit(&argc, args);
+	//Create OpenGL 3.1 context
+	glutInitContextVersion(3, 1);
+	//Create Double Buffered Window
+	glutInitDisplayMode(GLUT_DOUBLE);
+	glutInitWindowSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+	glutCreateWindow(WINDOW_NAME);
+
+	//Do post window/context creation initialization
+	if (!initGL())
+	{
+		printf("Unable to initialize graphics library!\n");
+		return 1;
+	}
+	//Set rendering function
+	glutDisplayFunc(render);
+	//Set main loop
+	glutTimerFunc(1000 / SCREEN_FPS, runMainLoop, 0);
+	//Start GLUT main loop
+	glutMainLoop();
 
 	return 0;
+}
+
+void runMainLoop(int val)
+{
+	//Frame logic
+	update();
+	render();
+	//Run frame one more time
+	glutTimerFunc(1000 / SCREEN_FPS, runMainLoop, val);
+}
+
+void update()
+{
+}
+
+void render()
+{
+	//Clear color buffer
+	glClear(GL_COLOR_BUFFER_BIT);
+
+	glColor3f(1.f, 0.f, 0.f);
+	for (int i = 0; i < casteljauPoints.size() - 1; i++)
+	{
+		glBegin(GL_LINES);
+		glVertex3f(casteljauPoints[i].getX(), casteljauPoints[i].getY(), casteljauPoints[i].getZ());
+		glVertex3f(casteljauPoints[i + 1].getX(), casteljauPoints[i + 1].getY(), casteljauPoints[i + 1].getZ());
+		glEnd();
+	}
+
+	const int ANCHOR_SIZE = 2;
+	glColor3f(0.f, 0.f, 1.f);
+	for (int i = 0; i < bezierAnchors.size(); i++)
+	{
+		glBegin(GL_QUADS);
+		glVertex3f(bezierAnchors[i].getX() - ANCHOR_SIZE, bezierAnchors[i].getY() - ANCHOR_SIZE, bezierAnchors[i].getZ());
+		glVertex3f(bezierAnchors[i].getX() + ANCHOR_SIZE, bezierAnchors[i].getY() - ANCHOR_SIZE, bezierAnchors[i].getZ());
+		glVertex3f(bezierAnchors[i].getX() + ANCHOR_SIZE, bezierAnchors[i].getY() + ANCHOR_SIZE, bezierAnchors[i].getZ());
+		glVertex3f(bezierAnchors[i].getX() - ANCHOR_SIZE, bezierAnchors[i].getY() + ANCHOR_SIZE, bezierAnchors[i].getZ());
+		glEnd();
+	}
+
+	//Update screen
+	glutSwapBuffers();
 }
