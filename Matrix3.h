@@ -11,6 +11,7 @@ public:
 	Matrix3(bool isIdentity = false);
 	Matrix3(array<Vector3, SIZE> matrix);
 	Matrix3(const Matrix3 &matrix);
+	Matrix3(Matrix3 &&matrix) = default;
 
 	array<Vector3, SIZE> getMatrix() const { return matrix; }
 	void setMatrix(array<Vector3, SIZE> matrix) { this->matrix = matrix; }

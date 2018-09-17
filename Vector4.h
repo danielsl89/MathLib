@@ -11,6 +11,7 @@ public:
 	Vector4(double x, double y, double z, double w);
 	Vector4(array<double, SIZE> components);
 	Vector4(const Vector4 &vector);
+	Vector4(Vector4 &&vector) = default;
 
 	double getW() const { return w; }
 	void setW(double x) { this->w = w; }

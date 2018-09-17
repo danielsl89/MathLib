@@ -9,6 +9,7 @@ public:
 	AABB();
 	AABB(Vector3 min, Vector3 max);
 	AABB(const AABB &aabb);
+	AABB(AABB &&aabb) = default;
 
 	Vector3 getMin() const { return min; }
 	void setMin(Vector3 min) { this->min = min; }

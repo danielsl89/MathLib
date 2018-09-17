@@ -17,6 +17,7 @@ public:
 	Vector3(double x, double y, double z);
 	Vector3(array<double, SIZE> components);
 	Vector3(const Vector3 &vector);
+	Vector3(Vector3 &&vector) = default;
 
 	double getX() const { return x; }
 	void setX(double x) { this->x = x; }
