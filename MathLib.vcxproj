@@ -90,8 +90,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\daniel.sanchez\source\repos\MathLib\MathLib\freeglut\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\daniel.sanchez\source\repos\MathLib\MathLib\freeglut\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)\freeglut\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)\freeglut\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

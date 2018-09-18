@@ -15,7 +15,6 @@ public:
 	Quaternion();
 	Quaternion(double w, double x, double y, double z);
 	Quaternion(const Quaternion &q);
-	Quaternion(Quaternion &&quaternion) = default;
 
 	double getW() const { return w; }
 	void setW(double w) { this->w = w; }

@@ -1,14 +1,12 @@
-﻿  AABB.cpp
-  OpenGLUtil.cpp
-c:\users\daniel.sanchez\documents\github\mathlib\opengl.h(1): fatal error C1083: Cannot open include file: 'GL/freeglut.h': No such file or directory
-  MathLibrary.cpp
-c:\users\daniel.sanchez\documents\github\mathlib\opengl.h(1): fatal error C1083: Cannot open include file: 'GL/freeglut.h': No such file or directory
-  Matrix3.cpp
-  Matrix4.cpp
+﻿  MathLibrary.cpp
+c:\users\daniel.sanchez\documents\github\mathlib\mathlibrary.cpp(284): warning C4018: '<': signed/unsigned mismatch
+c:\users\daniel.sanchez\documents\github\mathlib\mathlibrary.cpp(287): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\daniel.sanchez\documents\github\mathlib\mathlibrary.cpp(288): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\daniel.sanchez\documents\github\mathlib\mathlibrary.cpp(294): warning C4018: '<': signed/unsigned mismatch
+c:\users\daniel.sanchez\documents\github\mathlib\mathlibrary.cpp(297): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\daniel.sanchez\documents\github\mathlib\mathlibrary.cpp(298): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\daniel.sanchez\documents\github\mathlib\mathlibrary.cpp(299): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\daniel.sanchez\documents\github\mathlib\mathlibrary.cpp(300): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
   Quaternion.cpp
-c:\users\daniel.sanchez\documents\github\mathlib\quaternion.cpp(47): error C2280: 'Quaternion &Quaternion::operator =(const Quaternion &)': attempting to reference a deleted function
-  c:\users\daniel.sanchez\documents\github\mathlib\quaternion.h(43): note: compiler has generated 'Quaternion::operator =' here
-  c:\users\daniel.sanchez\documents\github\mathlib\quaternion.h(43): note: 'Quaternion &Quaternion::operator =(const Quaternion &)': function was implicitly deleted because 'Quaternion' has a user-defined move constructor
-  Vector3.cpp
-  Vector4.cpp
   Generating Code...
+  MathLib.vcxproj -> C:\Users\daniel.sanchez\Documents\GitHub\MathLib\Debug\MathLib.exe
