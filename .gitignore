@@ -23,7 +23,6 @@
 *.lai
 *.la
 *.a
-*.lib
 
 # Executables
 *.exe
@@ -47,3 +46,4 @@ Debug/MathLib.tlog/link.write.1.tlog
 Debug/MathLib.tlog/unsuccessfulbuild
 Debug/vc141.idb
 Debug/vc141.pdb
+.vs/MathLib/v15/.suo
