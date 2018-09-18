@@ -284,8 +284,8 @@ void render()
 	for (unsigned int i = 0; i < casteljauPoints.size() - 1; i++)
 	{
 		glBegin(GL_LINES);
-		glVertex3f((GLfloat)casteljauPoints[i].getX(), (GLfloat)casteljauPoints[i].getY(), (GLfloat)casteljauPoints[i].getZ());
-		glVertex3f((GLfloat)casteljauPoints[i + 1].getX(), (GLfloat)casteljauPoints[i + 1].getY(), (GLfloat)casteljauPoints[i + 1].getZ());
+		glVertex3f(static_cast<GLfloat>(casteljauPoints[i].getX()), (GLfloat)casteljauPoints[i].getY(), static_cast<GLfloat>(casteljauPoints[i].getZ()));
+		glVertex3f(static_cast<GLfloat>(casteljauPoints[i + 1].getX()), (GLfloat)casteljauPoints[i + 1].getY(), static_cast<GLfloat>(casteljauPoints[i + 1].getZ()));
 		glEnd();
 	}
 
@@ -294,10 +294,10 @@ void render()
 	for (unsigned int i = 0; i < bezierAnchors.size(); i++)
 	{
 		glBegin(GL_QUADS);
-		glVertex3f((GLfloat)bezierAnchors[i].getX() - ANCHOR_SIZE, (GLfloat)bezierAnchors[i].getY() - ANCHOR_SIZE, (GLfloat)bezierAnchors[i].getZ());
-		glVertex3f((GLfloat)bezierAnchors[i].getX() + ANCHOR_SIZE, (GLfloat)bezierAnchors[i].getY() - ANCHOR_SIZE, (GLfloat)bezierAnchors[i].getZ());
-		glVertex3f((GLfloat)bezierAnchors[i].getX() + ANCHOR_SIZE, (GLfloat)bezierAnchors[i].getY() + ANCHOR_SIZE, (GLfloat)bezierAnchors[i].getZ());
-		glVertex3f((GLfloat)bezierAnchors[i].getX() - ANCHOR_SIZE, (GLfloat)bezierAnchors[i].getY() + ANCHOR_SIZE, (GLfloat)bezierAnchors[i].getZ());
+		glVertex3f(static_cast<GLfloat>(bezierAnchors[i].getX()) - ANCHOR_SIZE, static_cast<GLfloat>(bezierAnchors[i].getY()) - ANCHOR_SIZE, static_cast<GLfloat>(bezierAnchors[i].getZ()));
+		glVertex3f(static_cast<GLfloat>(bezierAnchors[i].getX()) + ANCHOR_SIZE, static_cast<GLfloat>(bezierAnchors[i].getY()) - ANCHOR_SIZE, static_cast<GLfloat>(bezierAnchors[i].getZ()));
+		glVertex3f(static_cast<GLfloat>(bezierAnchors[i].getX()) + ANCHOR_SIZE, static_cast<GLfloat>(bezierAnchors[i].getY()) + ANCHOR_SIZE, static_cast<GLfloat>(bezierAnchors[i].getZ()));
+		glVertex3f(static_cast<GLfloat>(bezierAnchors[i].getX()) - ANCHOR_SIZE, static_cast<GLfloat>(bezierAnchors[i].getY()) + ANCHOR_SIZE, static_cast<GLfloat>(bezierAnchors[i].getZ()));
 		glEnd();
 	}
 
