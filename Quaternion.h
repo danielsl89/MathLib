@@ -15,6 +15,7 @@ public:
 	Quaternion();
 	Quaternion(double w, double x, double y, double z);
 	Quaternion(const Quaternion &q);
+	Quaternion(Quaternion &&q) = default;
 
 	double getW() const { return w; }
 	void setW(double w) { this->w = w; }
@@ -35,6 +36,7 @@ public:
 	static Quaternion slerp(const Quaternion &q1, const Quaternion &q2, double t);
 
 	void normalize();
+	const Quaternion &operator=(const Quaternion &q);
 	Quaternion operator+(const Quaternion &q) const;
 	Quaternion operator-(const Quaternion &q) const;
 	Quaternion operator*(const Quaternion &q) const;

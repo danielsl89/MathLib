@@ -1,12 +1,4 @@
 ﻿  MathLibrary.cpp
-c:\users\daniel.sanchez\documents\github\mathlib\mathlibrary.cpp(284): warning C4018: '<': signed/unsigned mismatch
-c:\users\daniel.sanchez\documents\github\mathlib\mathlibrary.cpp(287): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
-c:\users\daniel.sanchez\documents\github\mathlib\mathlibrary.cpp(288): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
-c:\users\daniel.sanchez\documents\github\mathlib\mathlibrary.cpp(294): warning C4018: '<': signed/unsigned mismatch
-c:\users\daniel.sanchez\documents\github\mathlib\mathlibrary.cpp(297): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
-c:\users\daniel.sanchez\documents\github\mathlib\mathlibrary.cpp(298): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
-c:\users\daniel.sanchez\documents\github\mathlib\mathlibrary.cpp(299): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
-c:\users\daniel.sanchez\documents\github\mathlib\mathlibrary.cpp(300): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
   Quaternion.cpp
   Generating Code...
   MathLib.vcxproj -> C:\Users\daniel.sanchez\Documents\GitHub\MathLib\Debug\MathLib.exe

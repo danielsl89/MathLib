@@ -77,6 +77,15 @@ void Quaternion::normalize()
 	z = z / norm;
 }
 
+const Quaternion & Quaternion::operator=(const Quaternion & q)
+{
+	w = q.w;
+	x = q.x;
+	y = q.y;
+	z = q.z;
+	return *this;
+}
+
 Quaternion Quaternion::operator+(const Quaternion &q) const
 {
 	return Quaternion(w + q.w, x + q.x, y + q.y, z + q.z);
