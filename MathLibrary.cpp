@@ -1,5 +1,6 @@
-#include "vector3.h"
-#include "vector4.h"
+#include "Vector3.h"
+#include "Vector4.h"
+#include "Vector.h"
 #include "Matrix3.h"
 #include "Matrix4.h"
 #include "Quaternion.h"
@@ -21,57 +22,55 @@ void vector3Examples()
 {
 	cout << "----------- VECTOR3 -----------" << endl;
 
-	//Creating vector1
-	Vector3 vector3_1(7, -1, 4.5);
-	cout << "vector3_1: " << vector3_1 << endl;
-	//Creating vector2
-	Vector3 vector3_2(2, 3, -2);
-	cout << "vector3_2: " << vector3_2 << endl;
+	Vector<double, 3> vector1({ 7, -1, 4.5 });
+	cout << "vector1: " << vector1 << endl;
+	Vector<double, 3> vector2({ 2, 3, -2 });
+	cout << "vector2: " << vector2 << endl;
 
-	Vector3 result = vector3_1 + vector3_2;
-	cout << "Result of vector3_1 + vector3_2: " << result << endl;
+	Vector<double, 3> result = vector1 + vector2;
+	cout << "Result of vector1 + vector2: " << result << endl;
 
-	result = vector3_1 * 3;
-	cout << "Result of vector3_1 * 3: " << result << endl;
+	result = vector1 * 3;
+	cout << "Result of vector1 * 3: " << result << endl;
 
-	cout << "Dot product of vector3_1 and vector3_2: " << Vector3::dot(vector3_1, vector3_2) << endl;
+	cout << "Dot product of vector1 and vector2: " << Vector<double, 3>::dot(vector1, vector2) << endl;
 
-	result = Vector3::cross(vector3_1, vector3_2);
-	cout << "Cross product of vector3_1 and vector3_2: " << result << endl;
+	result = cross(vector1, vector2);
+	cout << "Cross product of vector1 and vector2: " << result << endl;
 
-	result = Vector3::scale(vector3_1, vector3_2);
-	cout << "Scale vector3_1 by vector3_2: " << result << endl;
+	result = Vector<double, 3>::scale(vector1, vector2);
+	cout << "Scale vector1 by vector2: " << result << endl;
 
-	cout << "Magnitude vector3_1: " << vector3_1.magnitude() << endl;
+	cout << "Magnitude vector1: " << vector1.magnitude() << endl;
 
-	cout << "Linear interpolation (t=0.25) between vector3_1 and vector3_2: " << Vector3::lerp(vector3_1, vector3_2, 0.25) << endl;
+	cout << "Linear interpolation (t=0.25) between vector1 and vector2: " << Vector<double, 3>::lerp(vector1, vector2, 0.25) << endl;
 }
 
 void vector4Examples()
 {
 	cout << "----------- VECTOR4 -----------" << endl;
 	//Creating vector1
-	Vector4 vector4_1(7, -1, 4.5, 2);
-	cout << "vector4_1: " << vector4_1 << endl;
+	Vector<double, 4> vector1({ 7, -1, 4.5, 2 });
+	cout << "vector1: " << vector1 << endl;
 	//Creating vector2
-	Vector4 vector4_2(2, 3, -2, 0.5);
-	cout << "vector4_2: " << vector4_2 << endl;
-	cout << "vector4_1, w value: " << vector4_1[3] << endl; //Testing operator[] access
+	Vector<double, 4> vector2({ 2, 3, -2, 0.5 });
+	cout << "vector2: " << vector2 << endl;
+	cout << "vector1, w value: " << vector1[3] << endl; //Testing operator[] access
 
-	Vector4 result = vector4_1 - vector4_2;
-	cout << "Result of vector4_1 - vector4_2: " << result << endl;
+	Vector<double, 4> result = vector1 - vector2;
+	cout << "Result of vector1 - vector2: " << result << endl;
 
-	result = vector4_1 / 2;
-	cout << "Result of vector4_1 / 2: " << result << endl;
+	result = vector1 / 2;
+	cout << "Result of vector1 / 2: " << result << endl;
 
-	cout << "Dot product of vector4_1 and vector4_2: " << Vector4::dot(vector4_1, vector4_2) << endl;
+	cout << "Dot product of vector1 and vector2: " << Vector<double, 4>::dot(vector1, vector2) << endl;
 
-	result = Vector4::scale(vector4_1, vector4_2);
-	cout << "Scale vector4_1 by vector4_2: " << result << endl;
+	result = Vector<double, 4>::scale(vector1, vector2);
+	cout << "Scale vector1 by vector2: " << result << endl;
 
-	cout << "Magnitude vector4_1: " << vector4_1.magnitude() << endl;
+	cout << "Magnitude vector1: " << vector1.magnitude() << endl;
 
-	cout << "Linear interpolation (t=0.5) between vector4_1 and vector4_2: " << Vector3::lerp(vector4_1, vector4_2, 0.5) << endl;
+	cout << "Linear interpolation (t=0.5) between vector1 and vector2: " << Vector<double, 4>::lerp(vector1, vector2, 0.5) << endl;
 }
 
 void matrix3Examples()
@@ -230,6 +229,9 @@ int main(int argc, char* args[]) {
 	quaternionExamples();
 	aabbExamples();
 	cout << "---------------------------" << endl;
+
+	
+
 	//Bezier curve generation and drawing
 	bezierAnchors.push_back(Vector3(20, 20, 1));
 	bezierAnchors.push_back(Vector3(400, 80, 1));
