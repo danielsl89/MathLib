@@ -1,9 +1,9 @@
 #include <GL/freeglut.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
-#include <stdio.h>
 #include <vector>
-#include <stdio.h>
+#include <iostream>
+using namespace std;
 
 //Screen Constants
 const int SCREEN_WIDTH = 640;

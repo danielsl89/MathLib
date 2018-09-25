@@ -17,7 +17,7 @@ bool initGL()
     GLenum error = glGetError();
     if(error != GL_NO_ERROR)
     {
-        printf("Error initializing OpenGL! %s\n", gluErrorString(error));
+        cout << "Error initializing OpenGL! " << gluErrorString(error) << endl;
         return false;
     }
 
