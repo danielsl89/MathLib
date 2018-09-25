@@ -226,8 +226,6 @@ int main(int argc, char* args[]) {
 	aabbExamples();
 	cout << "---------------------------" << endl;
 
-	
-
 	//Bezier curve generation and drawing
 	bezierAnchors.push_back(Vector<double, 3>({ 20, 20, 1 }));
 	bezierAnchors.push_back(Vector<double, 3>({ 400, 80, 1 }));
@@ -247,7 +245,7 @@ int main(int argc, char* args[]) {
 	//Do post window/context creation initialization
 	if (!initGL())
 	{
-		printf("Unable to initialize graphics library!\n");
+		cout << "Unable to initialize graphics library!" << endl;
 		return 1;
 	}
 	//Set rendering function

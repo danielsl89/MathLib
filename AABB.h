@@ -20,4 +20,3 @@ public:
 };
 
 ostream &operator<<(ostream &out, const AABB &aabb);
-
