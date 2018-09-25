@@ -20,7 +20,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AABB.h" />
-    <ClInclude Include="OpenGL.h" />
     <ClInclude Include="OpenGLUtil.h" />
     <ClInclude Include="Quaternion.h" />
     <ClInclude Include="SquareMatrix.h" />
