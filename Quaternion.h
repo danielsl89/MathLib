@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-#include "Vector3.h"
+#include "Vector.h"
 using namespace std;
 
 #define PI 3.14159265
@@ -30,7 +30,7 @@ public:
 	void setZ(double z) { this->z = z; }
 
 	static double dot(const Quaternion &q1, const Quaternion &q2);
-	static Quaternion getQuaternionByAngleAndVector(double angle, Vector3 vector);
+	static Quaternion getQuaternionByAngleAndVector(double angle, Vector<double, 3> vector);
 	static Quaternion getNormalizedQuaternion(const Quaternion &q1);
 	static Quaternion lerp(const Quaternion &q1, const Quaternion &q2, double t);
 	static Quaternion slerp(const Quaternion &q1, const Quaternion &q2, double t);
@@ -44,8 +44,8 @@ public:
 };
 
 ostream &operator<<(ostream &out, const Quaternion &quaternion);
-Vector3 operator*(const Vector3 &v1, const Quaternion &q);
-Vector3 operator*(Quaternion &q, Vector3 &v1);
+Vector<double, 3> operator*(const Vector<double, 3> &v1, const Quaternion &q);
+Vector<double, 3> operator*(Quaternion &q, Vector<double, 3> &v1);
 Quaternion operator*(const Quaternion &q1, const double d);
 Quaternion operator*(const double d, const Quaternion &q1);
 Quaternion operator/(const Quaternion &q1, const double d);

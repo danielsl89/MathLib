@@ -4,7 +4,7 @@ AABB::AABB(): min(), max()
 {
 }
 
-AABB::AABB(Vector3 min, Vector3 max): min(min), max(max)
+AABB::AABB(Vector<double, 3> min, Vector<double, 3> max): min(min), max(max)
 {
 }
 
@@ -14,15 +14,15 @@ AABB::AABB(const AABB &aabb): min(aabb.min), max(aabb.max)
 
 bool AABB::collide(const AABB &aabb) const
 {
-	Vector3 aabbMax = aabb.getMax();
-	Vector3 aabbMin = aabb.getMin();
+	Vector<double, 3> aabbMax = aabb.getMax();
+	Vector<double, 3> aabbMin = aabb.getMin();
 
-	if (min.getX() > aabbMax.getX()) return false;
-	if (min.getY() > aabbMax.getY()) return false;
-	if (min.getZ() > aabbMax.getZ()) return false;
-	if (max.getX() < aabbMin.getX()) return false;
-	if (max.getY() < aabbMin.getY()) return false;
-	if (max.getZ() < aabbMin.getZ()) return false;
+	if (min[0] > aabbMax[0]) return false;
+	if (min[1] > aabbMax[1]) return false;
+	if (min[2] > aabbMax[2]) return false;
+	if (max[0] < aabbMin[0]) return false;
+	if (max[1] < aabbMin[1]) return false;
+	if (max[2] < aabbMin[2]) return false;
 
 	return true;
 }

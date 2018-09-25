@@ -8,6 +8,7 @@ class Vector {
 private:
 	array<T, n> data;
 public:
+	Vector();
 	Vector(array<T, n> data);
 	Vector(const Vector &vector);
 	Vector(Vector &&vector) = default;
@@ -41,6 +42,15 @@ template<typename T>
 Vector<T, 3> cross(const Vector<T, 3> &v1, const Vector<T, 3> &v2);
 
 //Class member functions
+template<typename T, std::size_t n>
+Vector<T, n>::Vector()
+{
+	for (int i = 0; i < n; i++)
+	{
+		data[i] = 0;
+	}
+}
+
 template<typename T, std::size_t n>
 Vector<T, n>::Vector(array<T, n> data) : data(data)
 {
@@ -133,11 +143,12 @@ template<typename T, std::size_t n>
 ostream &operator<<(ostream &out, const Vector<T,n> &vector)
 {
 	out << "(";
-	for (int i = 0; i < n; i++)
+	int lastItemIndex = n - 1;
+	for (int i = 0; i < lastItemIndex; i++)
 	{
 		out << vector[i] << "; ";
 	}
-	out << ")";
+	out << vector[lastItemIndex] << ")";
 	return out;
 }
 

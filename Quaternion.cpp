@@ -17,11 +17,11 @@ double Quaternion::dot(const Quaternion & q1, const Quaternion & q2)
 	return q1.x * q2.x + q1.y * q2.y + q1.z * q2.z + q1.w * q2.w;
 }
 
-Quaternion Quaternion::getQuaternionByAngleAndVector(double angle, Vector3 vector)
+Quaternion Quaternion::getQuaternionByAngleAndVector(double angle, Vector<double, 3> vector)
 {
 	double rad = angle * PI / 180;
 	double a = sin(rad / 2);
-	return Quaternion(cos(rad / 2), vector.getX() * a, vector.getY() * a, vector.getZ() * a );
+	return Quaternion(cos(rad / 2), vector[0] * a, vector[1] * a, vector[2] * a );
 }
 
 Quaternion Quaternion::getNormalizedQuaternion(const Quaternion & q1)
@@ -115,14 +115,14 @@ ostream & operator<<(ostream & out, const Quaternion & quaternion)
 	return out;
 }
 
-Vector3 operator*(const Vector3 & v1, const Quaternion & q)
+Vector<double, 3> operator*(const Vector<double, 3> & v1, const Quaternion & q)
 {
-	Vector3 qvector = Vector3(q.getX(), q.getY(), q.getZ());
-	Vector3 v2 = Vector3::cross(qvector, v1) * 2;
-	return v1 + q.getW() * v2 + Vector3::cross(qvector, v2);
+	Vector<double, 3> qvector = Vector<double, 3>({ q.getX(), q.getY(), q.getZ() });
+	Vector<double, 3> v2 = cross(qvector, v1) * 2;
+	return v1 + q.getW() * v2 + cross(qvector, v2);
 }
 
-Vector3 operator*(Quaternion & q, Vector3 & v1)
+Vector<double, 3> operator*(Quaternion & q, Vector<double, 3> & v1)
 {
 	return v1 * q;
 }
